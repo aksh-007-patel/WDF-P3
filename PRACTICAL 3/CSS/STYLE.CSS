@@ -1,0 +1,720 @@
+/* ==========================================================================
+   STUDENT HUB - MODERN RESPONSIVE STYLESHEET (style.css)
+   Practical 3: Responsive UI Design using CSS Grid, Flexbox, & Media Queries
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. DESIGN TOKENS & CSS VARIABLES
+   -------------------------------------------------------------------------- */
+:root {
+  --primary: #173b70;
+  --primary-dark: #0f2649;
+  --primary-light: #255799;
+  --accent: #f4b400;
+  --accent-hover: #d99e00;
+  --secondary: #0284c7;
+  --bg-gradient: linear-gradient(135deg, #eef4fc 0%, #f8fafc 100%);
+  --surface: #ffffff;
+  --surface-alt: #f8fafc;
+  --text-main: #1e293b;
+  --text-muted: #64748b;
+  --border: #dbeafe;
+  --border-focus: #2563eb;
+  --success: #16a34a;
+  --danger: #dc2626;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --shadow-sm: 0 2px 4px rgba(23, 59, 112, 0.06);
+  --shadow-md: 0 8px 24px rgba(23, 59, 112, 0.08);
+  --shadow-lg: 0 16px 36px rgba(23, 59, 112, 0.12);
+  --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* --------------------------------------------------------------------------
+   2. GLOBAL RESET & BASE STYLES
+   -------------------------------------------------------------------------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+  background: var(--bg-gradient);
+  color: var(--text-main);
+  min-height: 100vh;
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: var(--secondary);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+/* --------------------------------------------------------------------------
+   3. LANDING PAGE (INDEX.HTML)
+   -------------------------------------------------------------------------- */
+body.index-body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: radial-gradient(circle at 80% 20%, rgba(2, 132, 199, 0.08) 0%, transparent 50%),
+              radial-gradient(circle at 20% 80%, rgba(244, 180, 0, 0.08) 0%, transparent 50%),
+              linear-gradient(135deg, #f0f7ff 0%, #ffffff 100%);
+}
+
+.index-header {
+  max-width: 1100px;
+  width: 90%;
+  margin: 0 auto;
+  padding: 24px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--primary);
+  letter-spacing: 0.5px;
+}
+
+.brand-mark {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  color: #ffffff;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  font-weight: bold;
+  box-shadow: 0 4px 10px rgba(23, 59, 112, 0.25);
+}
+
+.index-nav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.index-nav a {
+  color: var(--text-main);
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.index-nav a:hover {
+  color: var(--primary);
+  background-color: rgba(23, 59, 112, 0.07);
+}
+
+.index-main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.hero-card {
+  max-width: 620px;
+  width: 100%;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 45px 35px;
+  text-align: center;
+  box-shadow: var(--shadow-lg);
+  animation: fadeIn 0.5s ease-out;
+}
+
+.hero-card img {
+  margin: 0 auto 20px auto;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  transition: var(--transition);
+}
+
+.hero-card img:hover {
+  transform: scale(1.04);
+}
+
+.hero-card h1 {
+  color: var(--primary);
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+
+.hero-tagline {
+  color: var(--secondary);
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 14px;
+}
+
+.hero-desc {
+  color: var(--text-muted);
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+.hero-actions {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.primary-btn {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+  color: #ffffff !important;
+  padding: 12px 28px;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: 1rem;
+  box-shadow: 0 4px 14px rgba(23, 59, 112, 0.25);
+  display: inline-block;
+}
+
+.primary-btn:hover {
+  background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(23, 59, 112, 0.35);
+}
+
+.secondary-btn {
+  background: var(--surface);
+  color: var(--primary) !important;
+  border: 1.5px solid var(--primary);
+  padding: 11px 26px;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: 1rem;
+  display: inline-block;
+}
+
+.secondary-btn:hover {
+  background: rgba(23, 59, 112, 0.05);
+  transform: translateY(-2px);
+}
+
+.index-footer {
+  text-align: center;
+  padding: 20px;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.index-footer hr {
+  max-width: 1100px;
+  margin: 0 auto 16px auto;
+  border: 0;
+  border-top: 1px solid var(--border);
+}
+
+/* --------------------------------------------------------------------------
+   4. HOME PAGE (home.html)
+   -------------------------------------------------------------------------- */
+body.home-body header {
+  background: linear-gradient(135deg, #173b70 0%, #0f2649 100%);
+  color: #ffffff;
+  padding: 26px 20px;
+  text-align: center;
+  box-shadow: var(--shadow-md);
+}
+
+.header-content h1 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+
+.header-subtitle {
+  color: #cbd5e1;
+  font-size: 0.95rem;
+  margin-top: 4px;
+}
+
+body.home-body nav {
+  background: #0d2547;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 10px 16px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+body.home-body nav a {
+  color: #e2e8f0;
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+}
+
+body.home-body nav a:hover,
+body.home-body nav a.active {
+  background-color: var(--accent);
+  color: #0f172a;
+}
+
+.content {
+  flex: 1;
+  max-width: 1100px;
+  width: 92%;
+  margin: 35px auto;
+  padding: 40px 30px;
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-md);
+  text-align: center;
+}
+
+.content h2 {
+  color: var(--primary);
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.intro-text {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  max-width: 700px;
+  margin: 0 auto 35px auto;
+}
+
+/* Feature Cards CSS Grid */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 24px;
+  text-align: left;
+}
+
+.feature-card {
+  background: var(--surface-alt);
+  padding: 28px 24px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--secondary);
+  background: var(--surface);
+}
+
+.feature-card.highlight-card {
+  border-top: 4px solid var(--accent);
+}
+
+.card-icon {
+  font-size: 2.2rem;
+  margin-bottom: 14px;
+}
+
+.feature-card h3 {
+  color: var(--primary);
+  font-size: 1.25rem;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.feature-card p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin-bottom: 22px;
+  line-height: 1.5;
+}
+
+.feature-card a {
+  align-self: flex-start;
+  padding: 9px 18px;
+  background: var(--primary);
+  color: #ffffff;
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.feature-card a:hover {
+  background: var(--secondary);
+}
+
+body.home-body footer {
+  background: var(--primary-dark);
+  color: #ffffff;
+  text-align: center;
+  padding: 18px;
+  font-size: 0.9rem;
+  margin-top: auto;
+}
+
+/* --------------------------------------------------------------------------
+   5. SUB-PAGE CONTAINERS & FORM DESIGN
+   -------------------------------------------------------------------------- */
+.container {
+  width: 92%;
+  max-width: 680px;
+  background: var(--surface);
+  padding: 38px 32px;
+  margin: 35px auto;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-lg);
+}
+
+.container.register-container { max-width: 680px; }
+.container.login-container { max-width: 440px; }
+.container.dashboard-container,
+.container.events-container,
+.container.admin-container { max-width: 960px; }
+
+.form-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.header-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.badge {
+  display: inline-block;
+  background: rgba(2, 132, 199, 0.12);
+  color: var(--secondary);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.form-header h1 {
+  color: var(--primary);
+  font-size: 1.9rem;
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+
+.subtitle {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+/* CSS Grid for Forms */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px 20px;
+  text-align: left;
+}
+
+.form-grid .full-width { grid-column: span 2; }
+
+.form-group { display: flex; flex-direction: column; }
+
+label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-main);
+  margin-bottom: 6px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="password"],
+select,
+textarea {
+  width: 100%;
+  padding: 11px 14px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  color: var(--text-main);
+  background-color: var(--surface-alt);
+  border: 1.5px solid #cbd5e1;
+  border-radius: var(--radius-sm);
+  transition: var(--transition);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--border-focus);
+  background-color: var(--surface);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 16px;
+  padding-right: 40px;
+}
+
+/* Radio & Checkbox Styling */
+.radio-group .group-label { margin-bottom: 8px; }
+
+.radio-options {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+  padding: 6px 0;
+}
+
+.radio-label,
+.checkbox-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.95rem;
+  font-weight: normal;
+  color: var(--text-main);
+  cursor: pointer;
+}
+
+.radio-label input[type="radio"],
+.checkbox-label input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--primary);
+  cursor: pointer;
+}
+
+.terms {
+  margin-top: 6px;
+  padding: 12px 14px;
+  background: var(--surface-alt);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+}
+
+/* Buttons Grid */
+.buttons,
+.btn {
+  margin-top: 26px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+input[type="submit"],
+input[type="reset"] {
+  width: 100%;
+  padding: 12px 20px;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+input[type="submit"] {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(23, 59, 112, 0.2);
+}
+
+input[type="submit"]:hover {
+  background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(23, 59, 112, 0.3);
+}
+
+input[type="reset"] {
+  background: var(--surface-alt);
+  color: var(--danger);
+  border: 1.5px solid #fee2e2;
+}
+
+input[type="reset"]:hover {
+  background: #fee2e2;
+  color: #991b1b;
+  transform: translateY(-2px);
+}
+
+.form-footer-nav {
+  margin-top: 24px;
+  text-align: center;
+}
+
+.home-btn {
+  display: inline-block;
+  padding: 8px 18px;
+  font-weight: 600;
+  color: var(--primary);
+  background: rgba(23, 59, 112, 0.06);
+  border-radius: var(--radius-sm);
+}
+
+.home-btn:hover {
+  background: rgba(23, 59, 112, 0.12);
+  color: var(--primary-dark);
+}
+
+.container hr {
+  margin: 24px 0 18px 0;
+  border: 0;
+  border-top: 1px solid var(--border);
+}
+
+.container footer {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+/* email paragraph */
+.email {
+  margin-top: 16px;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+/* --------------------------------------------------------------------------
+   6. TABLES & DASHBOARD COMPONENTS
+   -------------------------------------------------------------------------- */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 20px 0;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+}
+
+table { width: 100%; border-collapse: collapse; }
+
+th {
+  background-color: var(--primary);
+  color: #ffffff;
+  padding: 12px 16px;
+  font-weight: 600;
+  text-align: left;
+}
+
+td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-main);
+}
+
+tr:nth-child(even) td { background-color: var(--surface-alt); }
+tr:hover td { background-color: #eff6ff; }
+
+/* Stats Cards Grid */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+  margin-bottom: 25px;
+}
+
+.stat-card {
+  background: var(--surface-alt);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 18px 14px;
+  text-align: center;
+  transition: var(--transition);
+}
+
+.stat-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-sm);
+  background: var(--surface);
+}
+
+.stat-value {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--primary);
+  margin-bottom: 4px;
+}
+
+.stat-value.badge-success { color: var(--success); }
+
+.stat-label {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+/* --------------------------------------------------------------------------
+   7. MEDIA QUERIES & RESPONSIVE BREAKPOINTS
+   -------------------------------------------------------------------------- */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 992px) {
+  .features-grid { grid-template-columns: repeat(2, 1fr); }
+  .content { padding: 30px 20px; }
+}
+
+@media (max-width: 768px) {
+  .index-header { flex-direction: column; gap: 16px; }
+  .hero-card { padding: 30px 20px; }
+  .hero-card h1 { font-size: 1.6rem; }
+  .form-grid { grid-template-columns: 1fr; }
+  .form-grid .full-width { grid-column: span 1; }
+  .buttons, .btn { grid-template-columns: 1fr; }
+  .container { padding: 26px 20px; margin: 20px auto; }
+}
+
+@media (max-width: 480px) {
+  body.home-body nav { gap: 6px; padding: 8px 6px; }
+  body.home-body nav a { padding: 6px 10px; font-size: 0.8rem; }
+  .features-grid { grid-template-columns: 1fr; }
+  .hero-actions { flex-direction: column; width: 100%; }
+  .primary-btn, .secondary-btn { width: 100%; text-align: center; }
+}
